@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;700&family=Playfair+Display:ital,wght@1,700&family=Lora:italic,wght@1,600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@400;700&family=Playfair+Display:ital,wght@1,700&family=Lora:italic,wght@1,600&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             /* Default: Festive Rose */
@@ -37,55 +40,81 @@
             --btn-main: #166534;
         }
 
-        body { font-family: 'Inter', sans-serif; background: var(--primary-bg); transition: all 0.5s ease; }
-        .handwritten-fortune { font-family: 'Playfair Display', serif; font-style: italic; }
-        .card-inner { background: var(--card-grad); border: 2px solid rgba(0,0,0,0.05); }
-        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--primary-bg);
+            transition: all 0.5s ease;
+        }
+
+        .handwritten-fortune {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+        .card-inner {
+            background: var(--card-grad);
+            border: 2px solid rgba(0, 0, 0, 0.05);
+        }
+
         /* 3D Box Styling */
         .fortune-box {
             background: var(--box-bg);
             border-left: 8px solid var(--accent-text);
             transform: perspective(1000px) rotateX(2deg) rotateY(-1deg);
-            box-shadow: 
+            box-shadow:
                 10px 10px 0px var(--box-shadow),
-                15px 15px 25px rgba(0,0,0,0.05);
+                15px 15px 25px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
-        
+
         .fortune-box:hover {
             transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(10px);
         }
 
-        .btn-primary { background-color: var(--btn-main); }
-        .text-accent { color: var(--accent-text); }
+        .btn-primary {
+            background-color: var(--btn-main);
+        }
+
+        .text-accent {
+            color: var(--accent-text);
+        }
     </style>
 </head>
+
 <body class="min-h-screen p-4 md:p-8 flex items-center justify-center">
 
     <div class="max-w-5xl w-full grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-        
+
         <div class="bg-white/90 backdrop-blur-md p-8 rounded-3xl shadow-xl border border-white">
             <h1 class="text-3xl font-bold mb-6 text-gray-800">AstraCard ✨</h1>
-            
+
             <div class="mb-6">
                 <label class="block text-xs font-bold text-gray-400 uppercase mb-3">Select Aesthetic</label>
                 <div class="flex gap-3">
-                    <button onclick="setTheme('rose')" class="w-10 h-10 rounded-xl bg-rose-500 shadow-lg hover:scale-110 transition-all"></button>
-                    <button onclick="setTheme('indigo')" class="w-10 h-10 rounded-xl bg-indigo-500 shadow-lg hover:scale-110 transition-all"></button>
-                    <button onclick="setTheme('green')" class="w-10 h-10 rounded-xl bg-green-500 shadow-lg hover:scale-110 transition-all"></button>
+                    <button onclick="setTheme('rose')"
+                        class="w-10 h-10 rounded-xl bg-rose-500 shadow-lg hover:scale-110 transition-all"></button>
+                    <button onclick="setTheme('indigo')"
+                        class="w-10 h-10 rounded-xl bg-indigo-500 shadow-lg hover:scale-110 transition-all"></button>
+                    <button onclick="setTheme('green')"
+                        class="w-10 h-10 rounded-xl bg-green-500 shadow-lg hover:scale-110 transition-all"></button>
                 </div>
             </div>
 
             <div class="space-y-4">
-                <input type="text" id="name" placeholder="Friend's Name" class="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-gray-200 outline-none">
-                <input type="number" id="age" placeholder="Age" class="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-gray-200 outline-none">
-                <input type="text" id="hobby" placeholder="Hobby (e.g. Coding, Yoga)" class="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-gray-200 outline-none">
+                <input type="text" id="name" placeholder="Friend's Name"
+                    class="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-gray-200 outline-none">
+                <input type="number" id="age" placeholder="Age"
+                    class="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-gray-200 outline-none">
+                <input type="text" id="hobby" placeholder="Hobby (e.g. Coding, Yoga)"
+                    class="w-full p-4 bg-gray-50 border-none rounded-2xl focus:ring-2 focus:ring-gray-200 outline-none">
 
                 <div class="pt-4 space-y-3">
-                    <button onclick="generateCard()" class="w-full btn-primary text-white font-bold py-4 rounded-2xl shadow-xl transform active:scale-95 transition-all text-lg">
+                    <button onclick="generateCard()"
+                        class="w-full btn-primary text-white font-bold py-4 rounded-2xl shadow-xl transform active:scale-95 transition-all text-lg">
                         Create Card
                     </button>
-                    <button onclick="feelingLucky()" class="w-full bg-gray-100 text-gray-600 font-bold py-3 rounded-2xl hover:bg-gray-200 transition-all">
+                    <button onclick="feelingLucky()"
+                        class="w-full bg-gray-100 text-gray-600 font-bold py-3 rounded-2xl hover:bg-gray-200 transition-all">
                         🎲 I'm Feeling Lucky!
                     </button>
                 </div>
@@ -93,8 +122,9 @@
         </div>
 
         <div id="card-display" class="hidden">
-            <div id="capture-area" class="card-inner p-12 rounded-[3rem] shadow-2xl relative overflow-hidden min-h-[550px] flex flex-col justify-between">
-                
+            <div id="capture-area"
+                class="card-inner p-12 rounded-[3rem] shadow-2xl relative overflow-hidden min-h-[550px] flex flex-col justify-between">
+
                 <div>
                     <div class="text-accent font-bold tracking-widest text-sm mb-4">BIRTHDAY EDITION</div>
                     <h3 class="text-5xl font-bold text-gray-900 mb-2">
@@ -103,7 +133,7 @@
                     <p class="text-2xl text-gray-400 serif-italic mb-10">
                         Level <span id="out-age"></span> Unlocked
                     </p>
-                    
+
                     <p id="out-message" class="text-xl text-gray-700 leading-relaxed max-w-sm"></p>
                 </div>
 
@@ -112,12 +142,14 @@
                     <p id="out-fortune" class="handwritten-fortune text-2xl text-accent leading-snug"></p>
                 </div>
             </div>
-            
+
             <div class="grid grid-cols-2 gap-4 mt-8">
-                <button onclick="downloadCard()" class="flex items-center justify-center gap-2 py-4 bg-white text-gray-800 font-bold rounded-2xl border-2 border-gray-100 shadow-sm hover:bg-gray-50 transition-all">
+                <button onclick="downloadCard()"
+                    class="flex items-center justify-center gap-2 py-4 bg-white text-gray-800 font-bold rounded-2xl border-2 border-gray-100 shadow-sm hover:bg-gray-50 transition-all">
                     📥 Download PNG
                 </button>
-                <button onclick="window.print()" class="flex items-center justify-center gap-2 py-4 bg-gray-900 text-white font-bold rounded-2xl shadow-lg hover:bg-black transition-all">
+                <button onclick="window.print()"
+                    class="flex items-center justify-center gap-2 py-4 bg-gray-900 text-white font-bold rounded-2xl shadow-lg hover:bg-black transition-all">
                     🖨️ Print
                 </button>
             </div>
@@ -162,11 +194,20 @@
             document.getElementById('out-age').innerText = age;
             document.getElementById('out-message').innerText = msg;
             document.getElementById('out-fortune').innerText = `"${randomData.fortunes[Math.floor(Math.random() * randomData.fortunes.length)]}"`;
-    
+
             document.getElementById('card-display').classList.remove('hidden');
             document.getElementById('card-display').scrollIntoView({ behavior: 'smooth' });
-        }
 
+            // --- Added Confetti Logic ---
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 150,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#FFD700', '#B76E79', '#FFFFFF']
+                });
+            }
+        }
         function downloadCard() {
             const card = document.getElementById('capture-area');
             html2canvas(card, { scale: 2, useCORS: true }).then(canvas => {
@@ -178,4 +219,5 @@
         }
     </script>
 </body>
+
 </html>
