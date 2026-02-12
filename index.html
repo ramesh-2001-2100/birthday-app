@@ -78,6 +78,32 @@
         .text-accent {
             color: var(--accent-text);
         }
+
+        /* This defines the 'levitation' movement */
+        @keyframes floating {
+            0% {
+                transform: perspective(1000px) translateY(0px) rotateX(2deg) rotateY(-1deg);
+                box-shadow: 10px 10px 0px var(--box-shadow), 15px 15px 25px rgba(0, 0, 0, 0.05);
+            }
+
+            50% {
+                transform: perspective(1000px) translateY(-15px) rotateX(1deg) rotateY(0deg);
+                /* Shadow gets softer and more spread out as the box rises */
+                box-shadow: 10px 25px 15px var(--box-shadow), 20px 30px 40px rgba(0, 0, 0, 0.03);
+            }
+
+            100% {
+                transform: perspective(1000px) translateY(0px) rotateX(2deg) rotateY(-1deg);
+                box-shadow: 10px 10px 0px var(--box-shadow), 15px 15px 25px rgba(0, 0, 0, 0.05);
+            }
+        }
+
+        /* Apply it to your fortune box */
+        .fortune-box {
+            animation: floating 4s ease-in-out infinite;
+            /* This ensures the shadow moves with it for realism */
+            transition: box-shadow 0.3s ease;
+        }
     </style>
 </head>
 
